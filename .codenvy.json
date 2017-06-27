@@ -5,7 +5,7 @@
       "default": {
         "recipe": {
           "type": "dockerimage",
-          "location": "bitnami/che-express:4.14.0-r18"
+          "location": "bitnami/che-express:4.15.3-r2"
         },
         "machines": {
           "ws-machine": {
