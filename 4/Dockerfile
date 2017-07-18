@@ -3,12 +3,16 @@ FROM bitnami/minideb-extras:jessie-r15-buildpack
 MAINTAINER Bitnami <containers@bitnami.com>
 
 # System packages required
-RUN install_packages ghostscript imagemagick libbz2-1.0 libc6 libgcc1 libmysqlclient18 libncurses5 libreadline6 libsqlite3-0 libssl1.0.0 libstdc++6 libtinfo5 zlib1g netcat-traditional
+RUN install_packages apt-transport-https ghostscript imagemagick libbz2-1.0 libc6 libgcc1 libmysqlclient18 libncurses5 libreadline6 libsqlite3-0 libssl1.0.0 libstdc++6 libtinfo5 zlib1g netcat-traditional
 
 # Additional modules required
 RUN bitnami-pkg install node-7.10.0-0 --checksum 7209e62e60335308287cba38bc18fb34245d41b86bc7ffd3ad26413f186c529b
 ENV PATH=/opt/bitnami/node/bin:/opt/bitnami/python/bin:$PATH \
     NODE_PATH=/opt/bitnami/node/lib/node_modules
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN install_packages yarn
 
 RUN bitnami-pkg install express-generator-4.15.0-0 --checksum 28212293bc46e35f3e5638ba3a361fd4cdfcf7be5ee70e0412e8644393255505
 RUN npm install -g bower@1.8.0 sequelize-cli
