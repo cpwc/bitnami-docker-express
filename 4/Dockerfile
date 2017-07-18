@@ -23,7 +23,7 @@ RUN rm -rf /app
 
 # ExpressJS template
 ENV BITNAMI_APP_NAME=express
-ENV BITNAMI_IMAGE_VERSION=4.15.3-r2
+ENV BITNAMI_IMAGE_VERSION=4.15.3-r3
 
 COPY rootfs/ /
 
